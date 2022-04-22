@@ -3,7 +3,6 @@ document.addEventListener("DOMContentLoaded", getAllCoins)
 
 // console.log("Hello, World");
 const Url = "https://api.coingecko.com/api/v3/exchange_rates"
-const dataTable = document.getElementById("data")
 
 
 function getAllCoins() {
@@ -20,7 +19,6 @@ function displayData(coinsObj) {
         coinsArr.push(coinsObj[key])
     }
 
-    
     coinsArr.slice(0, 12).forEach(coin => {
         const name = coin.name;
         const newRow = document.createElement("tr");
@@ -39,5 +37,17 @@ function displayData(coinsObj) {
         
         newRow.append(newCellName, newCellType, newCellUnit, newCellValue);
         document.getElementById('data').append(newRow)
+
+        newCellName.addEventListener('click', () => {
+            const coinsName = document.getElementById("coins-name")
+            const coinsType = document.getElementById("coins-type")
+            const coinsUnit = document.getElementById("coins-unit")
+            const coinsValue = document.getElementById("coins-value")
+
+            coinsName.textContent = coin.name
+            coinsType.textContent = coin.type
+            coinsUnit.textContent = coin.unit
+            coinsValue.textContent = coin.value
+        })
     });
 }
