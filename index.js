@@ -1,17 +1,54 @@
-console.log("Hello, World");
-const Url = "https://api.coinpaprika.com/v1/coins"
-const dataTable = document.getElementById("data")
+
+document.addEventListener("DOMContentLoaded", getAllCoins)
+
+// console.log("Hello, World");
+const Url = "https://api.coingecko.com/api/v3/exchange_rates"
 
 
-fetch(Url)
-.then (res => res.json())
-.then (data => displayData(data))
+function getAllCoins() {
+    fetch(Url)
+        .then((res) => res.json())
+        .then((data) => displayData(data.rates))
+}
 
-function displayData(data){
-    console.log(data)
-    const topTen = data.slice(0,10)
-    console.log(topTen)
-    const newRow = document.createElement("tr")
-    console.log(data.forEach(data =>{
-        dataTable.appendChild(newRow)
-    }))}
+
+function displayData(coinsObj) {
+    const coinsArr = [];
+
+    for (const key in coinsObj) {
+        coinsArr.push(coinsObj[key])
+    }
+
+    coinsArr.slice(0, 12).forEach(coin => {
+        const name = coin.name;
+        const newRow = document.createElement("tr");
+        
+        const newCellName = document.createElement("td");
+        newCellName.textContent = coin.name;
+
+        const newCellType = document.createElement("td");
+        newCellType.textContent = coin.type;
+
+        const newCellUnit = document.createElement("td");
+        newCellUnit.textContent = coin.unit;
+
+        const newCellValue = document.createElement("td");
+        newCellValue.textContent = Math.round(coin.value);
+        
+        newRow.append(newCellName, newCellType, newCellUnit, newCellValue);
+        document.getElementById('data').append(newRow)
+
+        newCellName.addEventListener('mouseover', () => {
+            const coinsName = document.getElementById("coins-name")
+            const coinsType = document.getElementById("coins-type")
+            const coinsUnit = document.getElementById("coins-unit")
+            const coinsValue = document.getElementById("coins-value")
+
+            coinsName.textContent = `${coin.name},`
+            coinsValue.textContent = `${coin.value}: 1 BTC`
+            // coinsType.textContent = `${coin.type},`
+            // coinsUnit.textContent = `${coin.unit},`
+            
+        })
+    });
+}

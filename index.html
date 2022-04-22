@@ -11,9 +11,12 @@
     <script defer src="index.js"></script>
     
     <title>Crypto Tracker</title>
+    <script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+
 </head>
 <body>
-<!-- Navbar Section -->
+
+  <!-- Navbar Section -->
 <nav class="navbar fixed-top navbar-light bg-dark">
     <div class="container-fluid">
       <a class="navbar-brand text-light">JuanDeeMays Crypto Tracker</a>
@@ -24,23 +27,39 @@
     </div>
   </nav>
 
+<!--Dark Mode-->
+<div class = "button">
+  <button onclick="darkMode()"></button>
+</div>
+<script>
+  function darkMode() {
+    var element = document.body;
+    element.classList.toggle("dark-mode");
+  }
+</script>
+
 <!-- Table Section -->
-<table class="table table-bordered" style="margin-top: 90px">
+<table class="table">
     <thead>
         <tr>
-            <th scope="col">ID</th>
-            <th scope="col">BTC Price</th>
-            <th scope="col">Rank</th>
-            <th scope="col">Tier</th>
-            <th scope="col">Name</th>
-            <th scope="col">Price</th>
-            <th scope="col">Symbol</th>
+            <th scope="col">Currency Name</th>
+            <th scope="col">Type</th>
+            <th scope="col">Unit</th>
+            <th scope="col">Value</th>
         </tr>
     </thead>
     <tbody id="data">
-        
+  
     </tbody>
 </table>
+
+<div class="btcConversion">
+  <h2>Hover to View BitCoin Conversion</h2>
+  <p id="coins-name"></p>
+  <p id="coins-type"></p>
+  <p id="coins-unit"></p>
+  <p id="coins-value"></p>
+</div>
 
 </body>
 
