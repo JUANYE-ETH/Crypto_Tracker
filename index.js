@@ -1,4 +1,3 @@
-//DOMContentLoaded Event
 document.addEventListener("DOMContentLoaded", getAllCoins)
 
 // console.log("Hello, World");
@@ -38,16 +37,17 @@ function displayData(coinsObj) {
         newRow.append(newCellName, newCellType, newCellUnit, newCellValue);
         document.getElementById('data').append(newRow)
 
-        newCellName.addEventListener('click', () => {
+        newCellName.addEventListener('mouseover', () => {
             const coinsName = document.getElementById("coins-name")
             const coinsType = document.getElementById("coins-type")
             const coinsUnit = document.getElementById("coins-unit")
             const coinsValue = document.getElementById("coins-value")
 
-            coinsName.textContent = coin.name
-            coinsType.textContent = coin.type
-            coinsUnit.textContent = coin.unit
-            coinsValue.textContent = coin.value
+            coinsName.textContent = `${coin.name},`
+            coinsValue.textContent = `${coin.value}: 1 BTC`
+            // coinsType.textContent = `${coin.type},`
+            // coinsUnit.textContent = `${coin.unit},`
+            
         })
     });
 }
